@@ -1,0 +1,83 @@
+= Currently Available Keywords
+
+The following list of functions map to Robot Framework keywords. The keyword is derived from removing the hash symbol and underscores, and capitalizing the first letter of each word in the function name.
+
+This documentation has been copied from YARD's output.
+
+== Methods included from TextField
+#input_password, #input_text, #textfield_should_contain, #textfield_text_should_be
+
+== Methods included from Table
+#get_table_cell, #table_cell_should_contain, #table_column_should_contain, #table_header_should_contain, #table_row_should_contain, #table_should_contain
+
+== Methods included from Select
+#clear_items_from_select_list, #select_all_items_from_list, #select_item_from_list
+
+== Methods included from Radio
+#radio_button_should_be_selected, #radio_button_should_not_be_selected, #select_radio_button
+
+== Methods included from List
+#get_list_items
+
+== Methods included from Link
+#click_link
+
+== Methods included from Image
+#click_image
+
+== Methods included from CheckBox
+#checkbox_should_be_selected, #checkbox_should_not_be_selected, #select_checkbox, #unselect_checkbox
+
+== Methods included from Button
+#click_button
+
+== Methods included from Element
+#click_element, #element_should_be_visible, #element_should_not_be_visible, #element_text_should_be, #element_text_should_contain, #focus, #get_element_attribute, #get_element_text
+
+== Methods included from Page
+#execute_javascript, #get_all_elements, #get_page_source, #get_page_status, #get_page_text, #get_title, #log_page_source, #page_should_contain, #page_should_contain_button, #page_should_contain_checkbox, #page_should_contain_element, #page_should_contain_image, #page_should_contain_link, #page_should_contain_list, #page_should_contain_radio_button, #page_should_contain_textfield, #page_should_not_contain, #page_should_not_contain_button, #page_should_not_contain_checkbox, #page_should_not_contain_element, #page_should_not_contain_image, #page_should_not_contain_link, #page_should_not_contain_list, #page_should_not_contain_radio_button, #page_should_not_contain_textfield, #title_should_be, #title_should_contain
+
+== Methods included from Native
+#capture_screenshot, #click_left_mouse_button, #click_right_mouse_button, #drag_and_drop, #move_mouse_to_position, #press_left_mouse_button, #press_right_mouse_button, #release_left_mouse_button, #release_right_mouse_button
+
+== Methods included from Browser
+#close_browser, #delete_all_cookies, #delete_cookie, #get_all_cookies, #get_cookie, #get_url, #go_back, #go_forward, #go_to, #maximize_browser_window, #open_browser, #refresh, #start_browser, #url_should_be, #url_should_contain
+
+= Possible Future Keywords
+* Alert Should Be Present (maybe)
+* Choose Cancel On Next Confirmation (requires optional require: 'watir-webdriver/extensions/alerts')
+* Close All Browsers (currently only support single browser)
+* Close Window (WebDriver switches windows, you needn't close them, they'll close when Browser is killed)
+* Confirm Action (optional require, see choose cancel above)
+* Current Frame Should Contain
+* Drag And Drop
+* Frame Should Contain
+* Get Alert Message
+* Get All Links (return id, text;;)
+* Get Horizontal Position (via JS)
+* Get Matching Xpath Count = Get Number of Matches 
+* Get Vertical Position (via JS)
+* Get Window Identifiers
+* Get Window Names
+* Get Window Titles
+* List Selection Should Be
+* List Should Have No Selections
+* Mouse Down On Image
+* Mouse Down On Link
+* Mouse Out
+* Mouse Over
+* Open Context Menu (?)
+* Press Key
+* Press Key Native
+* Register Keyword To Run On Failure
+* Select Frame
+* Select Window
+* Simulate
+* Switch Browser
+* Table Footer Should Contain
+* Unselect Frame
+* Wait For Condition
+* Wait Until Page Contains
+* Wait Until Page Contains Element
+* Wait Until Page Loaded
+* Xpath Should Match X Times

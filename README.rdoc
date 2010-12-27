@@ -1,0 +1,116 @@
+= Watir Robot Library
+
+Watir Robot is a testing library for Robot Framework which provides keywords for automated web testing, using the Watir-WebDriver library to drive the browser. Because Watir-WebDriver is written in Ruby, this project interoperates with Robot Framework via its Remote Library interface.
+
+See {this project's wiki}[https://github.com/semperos/watir-robot/wiki] for tutorials and further documentation. See the Watir Robot Users and Watir Robot Devel Google groups to join in the discussion or ask questions of the community.
+
+== Overview
+
+Although Robot Framework is designed to work with Python and Java testing libraries natively, it also provides a Remote Library interface which allows testing libraries written in any language to be used with Robot Framework. These testing libraries provide the first, low-level "layer" of keywords, from which can be built more complex test suites. Watir Robot provides keywords specific to automated functional web testing, using the Watir library for driving the browser. The goal of this project is to provide a base of keywords similar to the existing SeleniumLibrary available for Robot Framework.
+
+This project is designed to be used in tandem with the +robot_remote_server+ gem hosted on Rubygems.org, with source code {on Github}[http://github.com/semperos/robot-remote-server]. In order to supply Robot Framework with keywords from Watir Robot, it is necessary to install that gem and run the included server application, feeding it an instance of the WatirRobot class.
+
+== Terminology
+
+* <b>Robot Framework:</b> A generic keyword-driven test automation framework. Map keywords to functions, then build a higher-level DSL by building keywords from keywords.
+* <b>Robot Framework's Remote Library:</b> One of the standard libraries provided by Robot Framework, this is the interface which allows you to write a Remote Server in any language, providing the bridge between the Python/Java world of Robot Framework and your own testing library.
+* <b>Remote Server:</b> Not part of Robot Framework, you can write a remote server to create a bridge between your testing library and Robot Framework by following the conventions of its Remote Library. A Python and Ruby implementation are provided as examples in Robot Framework's source code. A Ruby gem called +robot_remote_server+ is available on Rubygems.org and {here on Github}[http://github.com/semperos/robot-remote-server]
+* <b>Remote Testing Library:</b> Robot Framework runs on keywords; the testing library is that first layer of keywords that maps keywords to functions. These can be written in any language, as long as you write/use a Remote Server written in the same language. This project is a Testing Library which uses Ruby and Watir to provide that keyword base.
+
+These represent the full stack; on top of this stack, you write actual Robot Framework test cases. These can be written in a number of formats (text, HTML, etc.) and can be edited using the {RIDE (Robot IDE)}[http://code.google.com/p/robotframework-ride].
+
+== Installation
+
+=== Ruby Compatibility
+
+You must be running <b>JRuby >=1.5.3</b> to use this library.
+
+*Note:* If you want to generate the YARD documentation for this project yourself, you should use MRI Ruby >=1.9.1 to do so, but JRuby for running the actual code.
+
+=== Dependencies
+
+* +robot_remote_server+, which provides the Ruby interface to Robot Framework' Remote Library
+* +yard+, as a _runtime_ dependency, because the YARD Registry is used to feed Robot Framework and RIDE metadata about defined keywords.
+
+== Usage
+
+=== Context and Overview
+
+This projects relies on the following stack (see Robot Framework's {Remote Library documentation}[http://code.google.com/p/robotframework/wiki/RemoteLibrary]):
+
+* Robot Framework
+* Remote Library
+
+...which we talk to with this stack:
+
+* Remote Server
+* Test Library (this project)
+* Application being tested
+
+Robot Framework relies on keywords to execute tests. The framework itself defines some keywords for setting up test suite dependencies, converting values to different types, setting up conditional workflows, and defining test assertions (see full lists in the Robot Framework {Built-In Library documentation}[http://code.google.com/p/robotframework/wiki/BuiltInLibrary]). Watir Robot, as a Test Library, defines its own set of keywords specific to the domain of automated web testing, including interacting with web pages and manipulating web browsers.
+
+So, you're going to write regular Robot Framework tests, leveraging the Watir Robot library for extra keywords. The one catch is that Watir is written in Ruby, and Robot Framework only supports test libraries in Python and Java by default. However, Robot Framework has a Remote Library which allows us to interface with the main framework by running a local Remote Server instance that can communicate with the main framework (via XML-RPC). By writing a Remote Server in the language of our Test Library, we can define keywords in any programming language and use them within Robot Framework.
+
+A Remote Server has already been implemented in Ruby by the Robot Framework development team, and I've packaged it as a gem on Rubygems.org. So make sure you have the <tt>robot_remote_server</tt> gem installed in addition to the +watir_robot+ gem (+watir_robot+ defines +robot_remote_server+ as a dependency, but in case you've pulled this down and installed it manually, you must have both parts).
+
+Once you've installed +robot_remote_server+, you'll need to start an instance of the server and "register" the Watir Robot library with it. Without a running server, there's no way for Watir Robot to tell Robot Framework what keywords it defines.
+
+=== Practical Usage
+
+To tell Robot Framework what keywords Watir Robot defines, we need to start the +robot_remote_server+ and pass in the main class that defines Watir Robot's keywords. You can accomplish this in two ways.
+
+==== Start Remote Server and Run Tests
+
+Run the file <tt>scripts/run_server.rb</tt> to start an instance of the remote server. This file feeds the remote server the <tt>WatirRobot::KeywordLibrary</tt> class. You can copy the code in that file and supply your own class name to provide your own keyword library class.
+
+Once you've started the server, Robot Framework is aware of Watir Robot's keywords, and you can start building Robot Framework tests with Watir-based keywords!
+
+For instructions on writing and running Robot Framework tests, see these resources:
+
+* {Quick Start}[http://code.google.com/p/robotframework/wiki/QuickStartGuide]
+* {User Guide}[http://code.google.com/p/robotframework/wiki/UserGuide]
+* RIDE[http://code.google.com/p/robotframework-ride], an integrated development environment for writing Robot Framework tests
+
+=== Keywords
+
+This library primarily ships with Watir-based keywords for manipulating the browser. However, if used with JRuby, there are certain "native" keywords available for handling the mouse and keyboard.
+
+This native functionality may eventually ship in a separate gem, but for now the <tt>lib/keywords/native.rb</tt> file contains the <tt>Native</tt> module. Require this module in <tt>watir_robot.rb</tt> and do <tt>include Native</tt> in the +WatirRobot+ class to leverage these keywords. They are currently disabled by default, since they necessitate the use of JRuby and Java dependencies.
+
+=== Documentation
+
+One of the facilities provided by the Remote Library/server system is the collection of documentation and method signatures for remote keywords. Due to the fact that Ruby completely ignores comments in source files, we have to use separate documentation tools to parse and store this information.
+
+The YARD tool is a perfect fit for this situation due to its modular nature. YARD separates the concerns of parsing, storing and displaying documentation, allowing us to use any part independently of the others. Watir Robot leverages the storage component, specifically the "yardoc file" produced after a run of the +yardoc+ command, which contains metadata on every method defined in this code base.
+
+==== Generate Documentation
+
+If you need to re-generate the documentation locally, follow these instructions.
+
+<b>Note:</b> MRI Ruby >=1.9.1 or later should be used to generate this project's documentation with YARD.
+
+Make sure the +yard+ gem is installed for the version of Ruby you're using:
+
+    gem install yard
+
+Then run the +yardoc+ command from this project's root. You should see output describing how many files were created and what percentage of your codebase is commented. You should also see a new folder called +.yardoc+ in your project's root; this is your "yardoc file."
+
+By default, the +run_server.rb+ file which comes packaged with this project expects to find the yardoc file in the project's root folder. If you've adjusted the location of the yardoc file or adjusted the +run_server.rb+ file, you should ensure that it's pointing to the correct path.
+
+= Why Watir? Which Watir?
+
+First and most importantly, I feel that the Watir API is the cleanest and most intuitive among the open soure browser-driving frameworks available. Secondly, because it drives browsers using "native" drivers (not JavaScript manipulation), it is able to perform tasks that other tools are not.
+
+I am currently using the Watir-WebDriver version of Watir to drive the browser, for the following reasons:
+
+* It will become Watir 2.0
+* It leverages the WebDriver library
+* It supports more browsers than standard Watir (by virtue of WebDriver)
+* It has one dependency, Selenium-WebDriver, whereas standard Watir requires a separate driver gem per browser
+* It's receiving more active development than standard Watir at this time
+
+If folks have strong opinions about the use of Watir vs Watir-WebDriver vs Tool Of Your Choice, please join the discussion {on the wiki page}[https://github.com/semperos/watir-robot/wiki/Watir-Discussion]
+
+= To-Do's
+
+* Implement keywords that interact with/collect values from multiple elements

@@ -1,0 +1,152 @@
+*** Settings ***
+Suite Setup     Open and Maximize  ${URL}  ${BROWSER}
+Suite Teardown  Close Browser
+Library         Remote  http://localhost:8270
+Resource        resource.txt
+
+*** Test Cases ***
+Test Browser
+    [Setup]  Go To  ${URL}
+    Url Should Contain  google.com
+    ${current_url}=  Get Url
+    Go To  http://psd.tutsplus.com
+    Url Should Be  http://psd.tutsplus.com/
+    Go Back
+    Go Forward
+    Refresh
+    Click Image  alt=Photoshop to HTML
+    Switch To Next Window
+    Title Should Be  Photoshop to HTML | Rockable Press
+    Switch To Previous Window
+    Title Should Contain  Psdtuts+
+    Switch to Window  url=http://rockablepress.com/books/photoshop-to-html/
+    Url Should Contain  rockablepress.com
+    Switch to Window  url=http://psd.tutsplus.com/
+    Close Window  2
+    ${windows}=  Get Window Count
+    ${current_url}=  Get Url
+    Click Link  href=http://rockablepress.com/books/photoshop-to-html/
+    ${windows}=  Get Window Count
+    Switch to Next Window
+    Title Should Be  Photoshop to HTML | Rockable Press
+    ${windows}=  Get Window Count
+    Close Window  url=http://rockablepress.com/books/photoshop-to-html/
+    Title Should Contain  Psdtuts+
+
+Test Button
+    [Setup]  Go To  ${URL}
+    Click Button  value=Submit
+
+Test CheckBox
+    [Setup]  Go To  ${URL}
+    Select Checkbox  value=Ruby
+    Checkbox Should Be Selected  value=Ruby
+    Unselect Checkbox  value=Ruby
+    Checkbox Should Not Be Selected  value=Ruby
+
+Test Element
+    [Setup]  Go To  ${URL}
+    Click Element  name=submit
+    Element Should Be Visible  class=errorheader
+    Element Should Not Be Visible  name=backupCache
+    Element Text Should Be  class=errorheader  Looks like you have a question or two that still needs to be filled out.
+    Element Text Should Contain  class=errorheader  question or two
+    Focus  name=entry.0.single
+    Sleep  2 seconds
+    ${attr}=  Get Element Attribute  id=ss-form  method
+    ${text}=  Get Element Text  class=errorheader
+
+Test FileField
+    Go To  http://scribd.com/upload/supload
+    Choose File  name=upload_doc  C:\foobar
+    ${file}=  Get Filefield Path  name=upload_doc
+
+Test Form
+    [Setup]  Go To  ${URL}
+    Form Should Contain Button  id=ss-form  value=Submit
+    Form Should Not Contain Button  id=ss-form  value=foobar
+    Form Should Contain Checkbox  id=ss-form  value=Ruby
+    Form Should Not Contain Checkbox  id=ss-form  value=foobar
+    Go To  http://scribd.com/upload/supload
+    Form Should Contain Filefield  name=upload_doc  id=file
+    Form Should Not Contain Filefield  name=upload_doc  id=foobar
+    Go Back
+    Form Should Contain Radio Button  id=ss-form  value=Watir
+    Form Should Not Contain Radio Button  id=ss-form  value=foobar
+    Form Should Contain Select List  id=ss-form  id=entry_6
+    Form Should Not Contain Select List  id=ss-form  id=foobar
+    Form Should Contain Textfield  id=ss-form  id=entry_0
+    Form Should Not Contain Textfield  id=ss-form  id=foobar
+
+Test Image
+    [Setup]  Go To  ${URL}
+    Go To  http://psd.tutsplus.com/
+    Click Image  alt=Photoshop to HTML
+    Switch To Window  title=Photoshop to HTML | Rockable Press
+    Url Should Be  http://rockablepress.com/books/photoshop-to-html/
+    Switch To Other Window
+    Close Other Window
+
+Test Link
+    [Setup]  Go To  ${URL}
+    Click Link  text=Terms of Service
+    Url Should Be  http://www.google.com/accounts/TOS
+    Go Back
+
+Test List
+    [Setup]  Go To  ${URL}
+    Log  todo
+
+Test Native
+    [Setup]  Go To  ${URL}
+    Capture Screenshot
+
+Test Page
+    [Setup]  Go To  ${URL}
+    Title Should Be  Watir Example
+    ${source}=  Get Page Source
+    Log Page Source
+    ${text}=  Get Page Text
+    ${status}=  Get Page Status
+    ${title}=  Get Title
+    ${all_links}=  Get All Elements By Xpath  //a
+    Log  Executing JavaScript has been tested. It is simple wrapper around WebDriver's execute_script function, so if there's a problem, it's at the WebDriver level.
+    Page Should Contain  What testing tool do you like?
+    Page Should Not Contain  Supercalafragilisticexbialadocious
+    Page Should Contain Button  value=Submit
+    Page Should Not Contain Button  value=Foobar
+    Page Should Contain Checkbox  value=Ruby
+    Page Should Not Contain Checkbox  value=Clojure
+    Page Should Contain Element  id=ss-form
+    Page Should Not Contain Element  id=foobar
+    Go To  http://www.google.com/
+    Page Should Contain Image  src=/images/nav_logo29.png
+    Page Should Not Contain Image  src=foobar
+    Go Back
+    Page Should Contain Link  href=http://docs.google.com
+    Page Should Not Contain Link  href=foobar
+    Page Should Contain List  class=ss-choices  false
+    Page Should Not Contain List  class=foobar
+    Page Should Contain Radio Button  value=Watir
+    Page Should Not Contain Radio Button  value=foobar
+    Page Should Contain Textfield  name=entry.0.single
+    Page Should Not Contain Textfield  name=foobar
+    Title Should Be  Watir Example
+    Title Should Contain  Watir
+
+Test Radio
+    [Setup]  Go To  ${URL}
+    Log  todo
+
+Test Select
+    [Setup]  Go To  ${URL}
+    Log  todo
+
+Test Table
+    [Setup]  Go To  ${URL}
+    Log  todo
+
+Test TextField
+    [Setup]  Go To  ${URL}
+    Log  todo
+

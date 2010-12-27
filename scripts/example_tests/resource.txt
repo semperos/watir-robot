@@ -1,0 +1,14 @@
+*** Settings ***
+Library         Remote  http://localhost:8270
+
+*** Variables ***
+${BROWSER}  firefox
+${URL}  http://bit.ly/watir-example
+
+*** Keywords ***
+Open and Maximize
+    [Arguments]  ${url}  ${browser}=firefox
+    [Documentation]  Open a browser to a specific URL and then maximize it to full-screen.
+    Start Browser  ${URL}  ${BROWSER}
+    Maximize Browser Window
+
