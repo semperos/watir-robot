@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rake'
+require 'yard'
 require 'fileutils'
 require 'echoe'
 
@@ -13,6 +14,12 @@ Echoe.new('watir_robot') do |p|
   p.runtime_dependencies = ['robot_remote_server >=2.5.5.2', 'watir-webdriver >=0.1.8']
   p.need_tar_gz = false
 end
+
+YARD::Rake::YardocTask.new do |t|
+#  t.files   = ['lib/**/*.rb', OTHER_PATHS]
+  t.options = ['-b', 'yardoc']
+end
+
 
 namespace :clean do
   desc "Remove Robot Framework test-run output"
