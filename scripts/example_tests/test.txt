@@ -136,11 +136,21 @@ Test Page
 
 Test Radio
     [Setup]  Go To  ${URL}
-    Log  todo
+    Select Radio Button  value=Watir
+    Radio Button Should Be Selected  value=Watir
+    Radio Button Should Not Be Selected  value=Selenium
 
 Test Select
     [Setup]  Go To  ${URL}
-    Log  todo
+    Go to  http://drupal.org/project/issues/search/drupal
+    Select Item From List  id=edit-status  text=active
+    Item Should Be Selected  id=edit-status  text=active
+    Item Should Not Be Selected  id=edit-status  text=needs work
+    Select Item From List  id=edit-status  text=needs review
+    Item Should Be Selected  id=edit-status  text=needs review
+    Clear Items From List  id=edit-status
+    Item should not be selected  id=edit-status  text=active
+    Item should not be selected  id=edit-status  text=needs review
 
 Test Table
     [Setup]  Go To  ${URL}
