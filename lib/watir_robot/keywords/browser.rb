@@ -130,7 +130,8 @@ module WatirRobot
     #
     def switch_to_other_window
       @window_id = (@window_id - 1).abs
-      if @window_id != 0 or @window_id !=1
+      if @window_id != 0 and @window_id !=1
+        puts @window_id
         raise(Exception::WindowMatchError, "You cannot use this keyword when more than 2 windows are open; you must use 'Switch To Window', 'Switch to Next Window', or 'Switch to Previous Window'")
       end
 
@@ -202,7 +203,7 @@ module WatirRobot
     #
     def close_other_window
       @window_id = (@window_id - 1).abs
-      if @window_id != 0 or @window_id !=1
+      if @window_id != 0 and @window_id !=1
         raise(Exception::WindowMatchError, "You cannot use this keyword when more than 2 windows are open; you must use 'Switch To Window', 'Switch to Next Window', or 'Switch to Previous Window'")
       end
 

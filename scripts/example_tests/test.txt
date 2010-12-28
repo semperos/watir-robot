@@ -58,7 +58,7 @@ Test Element
 
 Test FileField
     Go To  http://scribd.com/upload/supload
-    Choose File  name=upload_doc  C:\foobar
+    Choose File  name=upload_doc  C:/foobar.txt
     ${file}=  Get Filefield Path  name=upload_doc
 
 Test Form
@@ -84,6 +84,7 @@ Test Image
     Click Image  alt=Photoshop to HTML
     Switch To Window  title=Photoshop to HTML | Rockable Press
     Url Should Be  http://rockablepress.com/books/photoshop-to-html/
+    ${count}=  Get Window Count
     Switch To Other Window
     Close Other Window
 
@@ -163,5 +164,8 @@ Test Table
 
 Test TextField
     [Setup]  Go To  ${URL}
-    Log  todo
+    Focus TextField  name=entry.0.single
+    Input Text  name=entry.0.single  Foobar
+    Textfield Should Contain  name=entry.0.single  Foo
+    Textfield Should Be  name=entry.0.single  Foobar
 
