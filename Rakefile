@@ -30,14 +30,21 @@ namespace :clean do
   end
 
   desc "Remove YARD documentation"
-  task :docs do
+  task :doc do
     doc_dir = File.join(PROJECT_DIR, "doc")
     FileUtils.rm_rf(doc_dir) if File.exists?(doc_dir)
+  end
+
+  desc "Remote YARD registry cache"
+  task :yardoc do
+    yardoc_dir = File.join(PROJECT_DIR, "yardoc")
+    FileUtils.rm_rf(yardoc_dir) if File.exists?(yardoc_dir)
   end
 
   desc "Cleanup all generated files"
   task :all do
     Rake::Task['clean:rf'].invoke
-    Rake::Task['clean:docs'].invoke
+    Rake::Task['clean:doc'].invoke
+    Rake::Task['clean:yardoc'].invoke
   end
 end
