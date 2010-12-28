@@ -10,15 +10,17 @@ module WatirRobot
     #
     # Get text from the items of a list
     #
+    # The second argument can be "true" or "false"; true for ordered list, false (default) for unordered.
+    #
     # @param [String] loc attribute/value pairs that match an HTML element
-    # @param [String, nil] ordered nil means check both ul and ol, true is ol, false is ul; strings for the booleans because the arguments come from Robot Framework
+    # @param [String] ordered true is ol, false is ul; strings for the booleans because the arguments come from Robot Framework
     # @param [String] sep the separator that should be used to separate the list items
     # 
-    def get_list_items(loc, ordered = nil, sep = ";;")
-      ordered = ordered.downcase unless ordered == nil
+    def get_list_items(loc, ordered = "false", sep = ";;")
+      ordered = ordered.downcase unless ordered.nil?
       if ordered.nil?
         # TODO: Warn user about this ambiguity
-        list = @browser.ol(parse_location(loc)) or @browser.ul(parse_location(loc))
+        list = @browser.ul(parse_location(loc))
       elsif ordered == 'true'
         list = @browser.ol(parse_location(loc))
       elsif ordered == 'false'

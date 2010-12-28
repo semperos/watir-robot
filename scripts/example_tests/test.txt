@@ -95,7 +95,7 @@ Test Link
 
 Test List
     [Setup]  Go To  ${URL}
-    Log  todo
+    ${items}=  Get List Items  class=ss-choices
 
 Test Native
     [Setup]  Go To  ${URL}
