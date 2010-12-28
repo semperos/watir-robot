@@ -12,7 +12,7 @@ if __FILE__ == $0
   RobotRemoteServer.new(WatirRobot::KeywordLibrary.new,
                           host = 'localhost',
                           port = 8270,
-                          yardoc_file = File.expand_path("#{File.dirname(__FILE__)}/../.yardoc"),
+                          yardoc_file = File.expand_path("#{File.dirname(__FILE__)}/../yardoc"),
                           yardoc_options = [[:docstring, ''], [:file, 'File'], [:source, 'Source Code']])
 end
 
