@@ -13,6 +13,8 @@ summary-*.html
 /doc/*
 /.yardoc
 /.yardoc/*
+/yardoc
+/yardoc/*
 *.rbc
 Gemfile.lock
 *screenshot.png
