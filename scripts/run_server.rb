@@ -1,12 +1,7 @@
-#!/usr/bin/env ruby
-#$LOAD_PATH.unshift File.expand_path("#{File.dirname(__FILE__)}")
-$LOAD_PATH.unshift File.expand_path("#{File.dirname(__FILE__)}/../lib")
+#!/usr/bin/env jruby
 
 if __FILE__ == $0
   require 'rubygems'
-#  Use the following for local testing
-#  instead of robot_remote_server
-  #require 'test_remote_server'
   require 'robot_remote_server'
   require 'watir_robot'
   RobotRemoteServer.new(WatirRobot::KeywordLibrary.new,
