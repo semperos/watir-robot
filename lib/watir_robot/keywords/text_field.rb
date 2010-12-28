@@ -59,7 +59,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # @param [String] text the text to compare against
     # 
-    def textfield_text_should_be(loc, text)
+    def textfield_should_be(loc, text)
       raise(Exception::ElementMatchError, "The textfield located at #{loc} does not have text equal to #{text}") unless
         @browser.text_field(parse_location(loc)).value == text
     end
