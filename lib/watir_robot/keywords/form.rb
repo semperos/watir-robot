@@ -3,7 +3,6 @@ module WatirRobot
   #
   # Functionality related to HTML forms as a whole
   #
-  # @todo Add keywords here
   module Form
 
     #
