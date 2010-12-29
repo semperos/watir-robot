@@ -3,7 +3,7 @@ module WatirRobot
   #
   # This module contains the functions necessary to convert arguments obtained
   # from Robot Framework tests and make them meaningful to the underlying
-  # Watir-WebDriver code.
+  # Watir-WebDriver code. These are NOT Robot Framework keywords.
   # 
   module Parser
     
@@ -104,7 +104,7 @@ module WatirRobot
     }
   
     #
-    # Parses the "location" string provided as argument for locating HTML elements.
+    # (Non-Keyword) Parses the "location" string provided as argument for locating HTML elements.
     #
     # Watir-WebDriver expects a hash of parameters by which to search for HTML
     # elements. This function take arguments from Robot Framework tests in the
@@ -139,7 +139,7 @@ module WatirRobot
     end
     
     #
-    # Parses a key-code argument, provided as an actual character or in ASCII code
+    # (Non-keyword) Parses a key-code argument, provided as an actual character or in ASCII code
     #
     # @param [String] key the key for which to find the java.awt.KeyEvent key-code constant
     # @return [String] the constant for the key event
@@ -154,7 +154,7 @@ module WatirRobot
     end
     
     #
-    # Small utility for trimming whitespace from both sides of a string
+    # (Non-keyword) Small utility for trimming whitespace from both sides of a string
     #
     # @param [String] s string to trim both sides of
     # @return [Strgin] the same string without whitespace on the left or right sides
