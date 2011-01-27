@@ -127,7 +127,12 @@ module WatirRobot
         attrs = {}
         attr_list.each do |a|
           attr_kv = a.split('=')
-          attrs[self.trim_sides(attr_kv[0])] = self.trim_sides(attr_kv[1])
+          # Need to turn strings in format "/regex-here/" into actual regexes
+          if attr_kv[1].start_with?('/')
+            attr_kv[1] = Regexp.new(Regexp.quote(attr_kv[1].gsub('/', '')))
+          end
+          attr_kv[1] = self.trim_sides(attr_kv[1]) unless attr_kv[1].is_a? Regexp
+          attrs[self.trim_sides(attr_kv[0])] = attr_kv[1]
         end
         # Watir expects symbols for keys
         attrs = Hash[attrs.map { |k, v| [k.to_sym, v] }]
