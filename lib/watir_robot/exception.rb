@@ -20,6 +20,7 @@ module WatirRobot
     class ObjectExists < RuntimeError; end
       #
       # Exception when an HTML element is found on a page erroneously
+      # @TODO: Make sure this replaces ElementDoesNotExist exceptions across the codebase where incorrect
       #
       class ElementExists < ObjectExists; end
 
