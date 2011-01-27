@@ -1,1 +1,3 @@
+v0.1.1. Add support for using Regular Expressions in keyword arguments. Convert string versions of regexes passed back from Robot Framework into actual Ruby regexes which Watir-WebDriver will accept.
+
 v0.1.0. Initial gem package for Watir Robot. Includes healthy base of Robot Framework keywords for driving the browser, taking a screenshot and using the mouse natively.
