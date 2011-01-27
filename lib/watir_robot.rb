@@ -3,6 +3,7 @@ require 'watir-webdriver'
 require 'watir_robot/parser'
 require 'watir_robot/exception'
 
+require 'watir_robot/keywords/area'
 require 'watir_robot/keywords/browser'
 require 'watir_robot/keywords/element'
 require 'watir_robot/keywords/button'
@@ -34,7 +35,8 @@ module WatirRobot
   class KeywordLibrary
     include WatirRobot::Exception
     include WatirRobot::Parser
-    
+
+    include WatirRobot::Area
     include WatirRobot::Browser
     include WatirRobot::Button
     include WatirRobot::CheckBox
