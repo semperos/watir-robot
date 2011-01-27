@@ -22,7 +22,3 @@ lib/watir_robot/keywords/select.rb
 lib/watir_robot/keywords/table.rb
 lib/watir_robot/keywords/text_field.rb
 lib/watir_robot/parser.rb
-scripts/example_tests/resource.txt
-scripts/example_tests/test.txt
-scripts/run_server.rb
-watir_robot.gemspec
