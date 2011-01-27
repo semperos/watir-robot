@@ -8,6 +8,7 @@ output-*.xml
 report-*.html
 summary.html
 summary-*.html
+*.log
 .bundle
 /doc
 /doc/*
