@@ -93,7 +93,27 @@ module WatirRobot
       raise(Exception::PageMatchError, "The expected text #{text} was not contained in the page: #{@browser.text}") if
         @browser.text.include? text
     end
-    
+
+    #
+    # Verify area tag exists on page
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    #
+    def page_should_contain_area(loc)
+      raise(Exception::ElementDoesNotExist, "The area described by #{loc} is not contained within the page:\n#{@browser.html}") unless
+        @browser.area(parse_location(loc)).exists?
+    end
+
+    #
+    # Verify area tag exists on page
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    #
+    def page_should_not_contain_area(loc)
+      raise(Exception::ElementExists, "The area described by #{loc} is not contained within the page:\n#{@browser.html}") if
+        @browser.area(parse_location(loc)).exists?
+    end
+
     #
     # Verify button exists on page
     #
@@ -110,7 +130,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def page_should_not_contain_button(loc)
-      raise(Exception::ElementDoesNotExist, "The button described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The button described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
         @browser.button(parse_location(loc)).exists?
     end
     
