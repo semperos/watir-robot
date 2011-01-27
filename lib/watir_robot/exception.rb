@@ -13,7 +13,16 @@ module WatirRobot
       # Exception when an HTML element cannot be found on the given page
       #
       class ElementDoesNotExist < ObjectDoesNotExist; end
-    
+
+    #
+    # Exception when an object is found on a given page erroneously
+    #
+    class ObjectExists < RuntimeError; end
+      #
+      # Exception when an HTML element is found on a page erroneously
+      #
+      class ElementExists < ObjectExists; end
+
     #
     # Exception when an object does not match expected parameters
     # 
