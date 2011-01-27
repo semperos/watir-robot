@@ -6,6 +6,7 @@ README.rdoc
 Rakefile
 lib/watir_robot.rb
 lib/watir_robot/exception.rb
+lib/watir_robot/keywords/area.rb
 lib/watir_robot/keywords/browser.rb
 lib/watir_robot/keywords/button.rb
 lib/watir_robot/keywords/checkbox.rb
