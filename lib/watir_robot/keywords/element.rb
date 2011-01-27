@@ -54,7 +54,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def element_should_be_visible(loc)
-      raise(Exception::ElementVisibilityError, "The element described by #{parse_location(loc)} is not visible") unless
+      raise(Exception::ElementVisibilityError, "The element described by #{parse_location(loc)} is not visible.") unless
         @browser.element(parse_location(loc)).visible?
     end
     
@@ -64,7 +64,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def element_should_not_be_visible(loc)
-      raise(Exception::ElementVisibilityError, "The element described by #{parse_location(loc)} is not visible") if
+      raise(Exception::ElementVisibilityError, "The element described by #{parse_location(loc)} is visible erroneously.") if
         @browser.element(parse_location(loc)).visible?
     end
     
@@ -75,7 +75,7 @@ module WatirRobot
     # @param [String] text the text to compare against
     # 
     def element_text_should_contain(loc, text)
-      raise(Exception::ElementMatchError, "The element's text #{@browser.element(parse_location(loc)).text} does not contain the text #{text}") unless
+      raise(Exception::ElementMatchError, "The element's text #{@browser.element(parse_location(loc)).text} does not contain the text #{text}.") unless
         @browser.element(parse_location(loc)).text.include? text
     end
     
@@ -85,7 +85,7 @@ module WatirRobot
     # @param [String] text the text to compare against
     # 
     def element_text_should_be(loc, text)
-      raise(Exception::ElementMatchError, "The element's text #{@browser.element(parse_location(loc)).text} does not equal #{text}") unless
+      raise(Exception::ElementMatchError, "The element's text #{@browser.element(parse_location(loc)).text} does not equal #{text}.") unless
         @browser.element(parse_location(loc)).text == text      
     end
     

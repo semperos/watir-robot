@@ -90,7 +90,7 @@ module WatirRobot
     # @param [String] text the text to compare against
     # 
     def page_should_not_contain(text)
-      raise(Exception::PageMatchError, "The expected text #{text} was not contained in the page: #{@browser.text}") if
+      raise(Exception::PageMatchError, "The expected text #{text} was contained in the page erroneously: #{@browser.text}") if
         @browser.text.include? text
     end
 
@@ -110,7 +110,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     #
     def page_should_not_contain_area(loc)
-      raise(Exception::ElementExists, "The area described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The area described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
         @browser.area(parse_location(loc)).exists?
     end
 
@@ -150,7 +150,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def page_should_not_contain_checkbox(loc)
-      raise(Exception::ElementDoesNotExist, "The checkbox described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The checkbox described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
         @browser.checkbox(parse_location(loc)).exists?
     end
     
@@ -170,7 +170,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def page_should_not_contain_element(loc)
-      raise(Exception::ElementDoesNotExist, "The element described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The element described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
         @browser.element(parse_location(loc)).exists?
     end
     
@@ -190,7 +190,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def page_should_not_contain_image(loc)
-      raise(Exception::ElementDoesNotExist, "The image described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The image described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
         @browser.image(parse_location(loc)).exists?
     end
 
@@ -210,7 +210,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def page_should_not_contain_link(loc)
-      raise(Exception::ElementDoesNotExist, "The link described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The link described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
         @browser.link(parse_location(loc)).exists?
     end
     
@@ -247,13 +247,13 @@ module WatirRobot
       ordered = ordered.downcase unless ordered == nil
       if ordered.nil?
         # Not specified; match either
-        raise(Exception::ElementDoesNotExist, "The list described by #{loc} is not contained within the page:\n#{@browser.html}") if
+        raise(Exception::ElementExists, "The list described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
           (@browser.ol(parse_location(loc)).exists? || @browser.ul(parse_location(loc)).exists?)
       elsif ordered == 'true'
-        raise(Exception::ElementDoesNotExist, "The ordered list described by #{loc} is not contained within the page:\n#{@browser.html}") if
+        raise(Exception::ElementExists, "The ordered list described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
           @browser.ol(parse_location(loc)).exists?
       elsif ordered == 'false'
-        raise(Exception::ElementDoesNotExist, "The unordered list described by #{loc} is not contained within the page:\n#{@browser.html}") if
+        raise(Exception::ElementExists, "The unordered list described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
           @browser.ul(parse_location(loc)).exists?
       else
         raise(ArgumentError, "If you specify ordered vs. unordered lists, the only valid values are 'true' or 'false' (case-insensitive)")
@@ -276,7 +276,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def page_should_not_contain_radio_button(loc)
-      raise(Exception::ElementDoesNotExist, "The radio button described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The radio button described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
         @browser.radio(parse_location(loc)).exists?
     end
 
@@ -296,7 +296,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     #
     def page_should_not_contain_select_list(loc)
-      raise(Exception::ElementDoesNotExist, "The select list described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The select list described by #{loc} is not contained within the page erroneously:\n#{@browser.html}") if
         @browser.select(parse_location(loc)).exists?
     end
 
@@ -316,7 +316,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def page_should_not_contain_textfield(loc)
-      raise(Exception::ElementDoesNotExist, "The text field described by #{loc} is not contained within the page:\n#{@browser.html}") if
+      raise(Exception::ElementExists, "The text field described by #{loc} is not contained within the page erroneously:\n#{@browser.html}") if
         @browser.text_field(parse_location(loc)).exists?
     end
 

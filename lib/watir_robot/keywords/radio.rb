@@ -35,7 +35,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def radio_button_should_not_be_selected(loc)
-      raise(Exception::RadioSelectionError, "The radio button located at #{loc} is selected.") if
+      raise(Exception::RadioSelectionError, "The radio button located at #{loc} is selected erroneously.") if
         @browser.radio(parse_location(loc)).set?
     end
     

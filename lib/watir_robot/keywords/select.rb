@@ -62,7 +62,7 @@ module WatirRobot
     # @param [String] item_loc attribute/value pairs that match an item in a select list
     #
     def item_should_be_selected(list_loc, item_loc)
-      raise(Exception::SelectListSelectionError, "The item described by #{item_loc} in the select list described by #{list_loc} is not selected") unless
+      raise(Exception::SelectListSelectionError, "The item described by #{item_loc} in the select list described by #{list_loc} is not selected.") unless
         @browser.select(parse_location(list_loc)).option(parse_location(item_loc)).selected?
     end
 
@@ -73,7 +73,7 @@ module WatirRobot
     # @param [String] item_loc attribute/value pairs that match an item in a select list
     #
     def item_should_not_be_selected(list_loc, item_loc)
-      raise(Exception::SelectListSelectionError, "The item described by #{item_loc} in the select list described by #{list_loc} is selected") if
+      raise(Exception::SelectListSelectionError, "The item described by #{item_loc} in the select list described by #{list_loc} is selected erroneously.") if
         @browser.select(parse_location(list_loc)).option(parse_location(item_loc)).selected?
     end
 

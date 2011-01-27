@@ -44,7 +44,7 @@ module WatirRobot
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def checkbox_should_not_be_selected(loc)
-      raise(Exception::CheckboxSelectionError, "The checkbox located at #{loc} is checked off.") if
+      raise(Exception::CheckboxSelectionError, "The checkbox located at #{loc} is checked off erroneously.") if
         @browser.checkbox(parse_location(loc)).set?
     end
     
