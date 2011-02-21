@@ -1,3 +1,5 @@
+v0.1.3. Include the new Area module which was coded in a previous version, but omitted from the KeywordLib class.
+
 v0.1.2. Fix improper use of custom exceptions and exception strings for negative tests.
 
 v0.1.1. Add support for using Regular Expressions in keyword arguments. Convert string versions of regexes passed back from Robot Framework into actual Ruby regexes which Watir-WebDriver will accept.
