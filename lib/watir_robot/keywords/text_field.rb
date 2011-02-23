@@ -38,7 +38,32 @@ module WatirRobot
       # This will differ from input_text when logging is implemented
       @browser.text_field(parse_location(loc)).set password
     end
-    
+
+    #
+    # Clear the given textfield
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    #
+    def clear_textfield(loc)
+      @browser.text_field(parse_location(loc)).clear
+    end
+
+    #
+    # Get value of given text field
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    def get_textfield_value(loc)
+      @browser.text_field(parse_location(loc)).value
+    end
+
+    #
+    # Append text to a given text field's current value
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    #
+    def append_to_textfield(loc, text)
+      @browser.text_field(parse_location(loc)).append(text)
+    end
     
     ### Conditions ###
     
