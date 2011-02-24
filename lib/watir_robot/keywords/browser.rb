@@ -14,7 +14,10 @@ module WatirRobot
     # @return [Object] the browser object with which to drive the browser
     #
     def open_browser(browser = 'firefox')
-      @browser = Watir::Browser.new browser.to_sym
+      profile = Selenium::WebDriver::Firefox::Profile.new
+      profile.native_events = false
+
+      @browser = Watir::Browser.new(browser.to_sym, :profile => profile)
       @driver = @browser.driver
       @window_id = 0
       return @browser
