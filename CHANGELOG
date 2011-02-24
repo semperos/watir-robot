@@ -1,3 +1,7 @@
+v0.1.5 Add keywrods to Element for sending keys (typing) into any element.
+
+v0.1.4 Add keywords to TextField module.
+
 v0.1.3. Include the new Area module which was coded in a previous version, but omitted from the KeywordLib class.
 
 v0.1.2. Fix improper use of custom exceptions and exception strings for negative tests.

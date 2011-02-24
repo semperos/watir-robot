@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{watir_robot}
-  s.version = "0.1.3"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Daniel Gregoire"]
-  s.date = %q{2011-01-27}
+  s.date = %q{2011-02-23}
   s.description = %q{Watir Robot - Remote keyword library for Robot Framework}
   s.email = %q{}
   s.extra_rdoc_files = ["CHANGELOG", "LICENSE", "README.rdoc", "lib/watir_robot.rb", "lib/watir_robot/exception.rb", "lib/watir_robot/keywords/area.rb", "lib/watir_robot/keywords/browser.rb", "lib/watir_robot/keywords/button.rb", "lib/watir_robot/keywords/checkbox.rb", "lib/watir_robot/keywords/element.rb", "lib/watir_robot/keywords/file_field.rb", "lib/watir_robot/keywords/form.rb", "lib/watir_robot/keywords/image.rb", "lib/watir_robot/keywords/link.rb", "lib/watir_robot/keywords/list.rb", "lib/watir_robot/keywords/native.rb", "lib/watir_robot/keywords/page.rb", "lib/watir_robot/keywords/radio.rb", "lib/watir_robot/keywords/select.rb", "lib/watir_robot/keywords/table.rb", "lib/watir_robot/keywords/text_field.rb", "lib/watir_robot/parser.rb"]

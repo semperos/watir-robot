@@ -23,3 +23,4 @@ lib/watir_robot/keywords/select.rb
 lib/watir_robot/keywords/table.rb
 lib/watir_robot/keywords/text_field.rb
 lib/watir_robot/parser.rb
+watir_robot.gemspec
