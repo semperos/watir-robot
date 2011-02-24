@@ -45,6 +45,26 @@ module WatirRobot
     def focus(loc)
       @browser.element(parse_location(loc)).focus
     end
+
+    #
+    # Type text into the given text field (alternate for "Type Text")
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    # @param [String] text the text to type into the field
+    #
+    def send_keys(loc, text)
+      @browser.element(parse_location(loc)).send_keys(text)
+    end
+
+    #
+    # Type text into the given text field (alternate for "Send Keys")
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    # @param [String] text the text to type into the field
+    #
+    def type_text(loc, text)
+      @browser.element(parse_location(loc)).send_keys(text)
+    end
     
     ### Conditions ###
 
