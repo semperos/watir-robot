@@ -50,6 +50,28 @@ module WatirRobot
     end
 
     #
+    # Verify that a form contains a specific element
+    #
+    # @param [String] form_loc attribute/value pairs that match an HTML element
+    # @param [String] field_loc attribute/value pairs that match an HTML element
+    #
+    def form_should_contain_element(form_loc, field_loc)
+      raise(Exception::ElementMatchError, "The element described by #{field_loc} was not located in the form described by #{form_loc}.") unless
+        @browser.form(parse_location(form_loc)).checkbox(parse_location(field_loc)).exists?
+    end
+
+    #
+    # Verify that a form does not contain a specific element
+    #
+    # @param [String] form_loc attribute/value pairs that match an HTML element
+    # @param [String] field_loc attribute/value pairs that match an HTML element
+    #
+    def form_should_not_contain_element(form_loc, field_loc)
+      raise(Exception::ElementMatchError, "The element described by #{field_loc} was erroneously located in the form described by #{form_loc}.") if
+        @browser.form(parse_location(form_loc)).checkbox(parse_location(field_loc)).exists?
+    end
+
+    #
     # Verify that a form contains a specific file-field
     #
     # @param [String] form_loc attribute/value pairs that match an HTML element
