@@ -1,3 +1,5 @@
+v0.1.7 Add keywords for verification of presence/absence of forms on a page.
+
 v0.1.6 Disable native events by default to fix bug with click().
 
 v0.1.5 Add keywrods to Element for sending keys (typing) into any element.
