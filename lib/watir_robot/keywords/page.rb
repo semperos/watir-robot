@@ -165,13 +165,33 @@ module WatirRobot
     end
 
     #
-    # Verify element exists on page
+    # Verify element does not exist on page
     #
     # @param [String] loc attribute/value pairs that match an HTML element
     # 
     def page_should_not_contain_element(loc)
       raise(Exception::ElementExists, "The element described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
         @browser.element(parse_location(loc)).exists?
+    end
+
+    #
+    # Verify form exists on page
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    # 
+    def page_should_contain_form(loc)
+      raise(Exception::ElementDoesNotExist, "The form described by #{loc} is not contained within the page:\n#{@browser.html}") unless
+        @browser.form(parse_location(loc)).exists?
+    end
+
+    #
+    # Verify form does not exist on page
+    #
+    # @param [String] loc attribute/value pairs that match an HTML element
+    # 
+    def page_should_not_contain_form(loc)
+      raise(Exception::ElementExists, "The form described by #{loc} is erroneously contained within the page:\n#{@browser.html}") if
+        @browser.form(parse_location(loc)).exists?
     end
     
     #
