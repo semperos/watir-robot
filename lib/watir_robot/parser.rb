@@ -121,6 +121,8 @@ module WatirRobot
         return {:css => loc[4..loc.length]}
       elsif loc[0..5].downcase == 'xpath='
         return {:xpath => loc[6..loc.length]}
+      elsif !loc.include? '='
+        return {:id => loc}
       else
         # Comma-separated attributes
         attr_list = loc.split(',')
