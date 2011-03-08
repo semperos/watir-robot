@@ -1,3 +1,5 @@
+v0.1.8 Add default handling for parsing; no keyword given, defaults to "id." Add more generic keywords for form handling.
+
 v0.1.7 Add keywords for verification of presence/absence of forms on a page.
 
 v0.1.6 Disable native events by default to fix bug with click().
